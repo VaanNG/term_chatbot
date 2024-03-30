@@ -69,12 +69,11 @@ This will provide verbose output and stop the test runner as soon as the first t
 
 ## Project Structure 
 
+```
 chat_app/
 ├── api_clients/
 │   ├── init.py
-│   ├── ai_chatbots.py
-│   ├── anthropic_chatbot.py
-│   ├── anthropic_http_client.py
+│   ├── anthropic_client.py
 │   ├── base_client.py
 │   └── openai_client.py
 ├── tests/
@@ -87,6 +86,7 @@ chat_app/
 ├── requirements.txt
 ├── app.py
 └── README.md
+```
 
 - `api_clients/`: Contains the classes for different AI chatbots and API clients.
 - `tests/`: Contains unit tests for the API client classes.
