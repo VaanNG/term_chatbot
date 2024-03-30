@@ -15,6 +15,14 @@ This project is a terminal-based chat application that allows you to interact wi
 - Chat history available. 
 - Save chat history after exiting.
 
+## Wish lists 
+
+[ ] OpenAI Client -- ChatGPT? 
+[ ] Gemini Client -- Gemini .. ? 
+[ ] Resume from chat history
+[ ] Upload files with texts (.md)
+[ ] Navigate with keyboard shortcut, mouse while typing in the text to send as prompt 
+
 ## Installation
 
 1. Clone the repository
