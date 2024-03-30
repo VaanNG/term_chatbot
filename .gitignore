@@ -1,0 +1,35 @@
+# Compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# IDE/Editor files
+.idea/
+.vscode/
+.vs/
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# Temporary files
+*~
+.DS_Store
+
+# Environment variables and configuration
+.env
+config.json
+
+# Chat history
+chat_history
+
