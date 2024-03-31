@@ -68,9 +68,9 @@ This will provide verbose output and stop the test runner as soon as the first t
 
 4. Once you've selected the model, you can start chatting with the AI by typing your messages in the terminal.
 
-5. To submit a multi-line message, type `/send` on a new line after entering your message.
+5. To submit a multi-line message, press enter to jump line and when you're ready to send the prompt, type `/send` on a new line after entering your message.
 
-6. To exit the application, type `exit`, then `send` (recommended) or `ctrl-c`
+6. To exit the application, type `exit` on a new line (recommended) or `ctrl-c`
 
 ## Pricing Model
 
