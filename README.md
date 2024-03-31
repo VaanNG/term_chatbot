@@ -5,23 +5,20 @@ This project is a terminal-based chat application that allows you to interact wi
 ## Features
 
 - Terminal-based user interface for chatting with AI models.
-- Support for multiple AI chatbots (Anthropic and OpenAI included).
+- Support for multiple AI chatbots (Anthropic and OpenAI).
 - Ability to choose the AI chatbot and specific model to use.
 - Modular architecture for easy extensibility and maintenance.
-- Unit tests for API client classes.
-- Loading configuration settings (API keys, available models) from a `.env` file.
-- Graceful handling of keyboard interrupts (Ctrl+C) during input.
-- Multi-line user input support with the `/send` command.
-- Chat history available. 
-- Save chat history after exiting.
+- Real-time pricing information and token usage tracking.
+- Keyboard navigation for browsing chat history (WIP).
+- Chat history saving and loading (WIP).
 
 ## Wish lists 
 
-[ ] OpenAI Client -- ChatGPT? 
-[ ] Gemini Client -- Gemini .. ? 
-[ ] Resume from chat history
-[ ] Upload files with texts (.md)
-[ ] Navigate with keyboard shortcut, mouse while typing in the text to send as prompt 
+* [ ] OpenAI Client -- ChatGPT? 
+* [ ] Gemini Client -- Gemini .. ? 
+* [ ] Resume from chat history
+* [ ] Upload files with texts (.md)
+* [ ] Navigate with keyboard shortcut, mouse while typing in the text to send as prompt 
 
 ## Installation
 
@@ -40,8 +37,8 @@ pip install -r requirements.txt
 ```
 ANTHROPIC_API_KEY=YOUR_ANTHROPIC_API_KEY
 OPENAI_API_KEY=YOUR_OPENAI_API_KEY
-CUSTOM_ANTHROPIC_MODELS=claude-3-opus-20240229,claude-3-sonnet-20240229,claude-3-haiku-20240307
-CUSTOM_OPENAI_MODELS=davinci,curie,babbage,ada
+AVAILABLE_ANTHROPHIC_MODELS=claude-3-opus-20240229,claude-3-sonnet-20240229,claude-3-haiku-20240307
+AVAILABLE_OPENAI_MODELS=davinci,curie,babbage,ada
 ```
 Replace `YOUR_ANTHROPIC_API_KEY` and `YOUR_OPENAI_API_KEY` with your actual API keys. Modify the `CUSTOM_ANTHROPIC_MODELS` and `CUSTOM_OPENAI_MODELS` variables to include the models you want to support.
 
@@ -74,6 +71,11 @@ This will provide verbose output and stop the test runner as soon as the first t
 5. To submit a multi-line message, type `/send` on a new line after entering your message.
 
 6. To exit the application, type `exit`, then `send` (recommended) or `ctrl-c`
+
+## Pricing Model
+
+The application includes a real-time pricing feature that calculates the token costs for each conversation based on the selected AI model. The pricing information is displayed after each AI response, showing the cost for the current conversation and the total cost of all conversations.
+
 
 ## Project Structure 
 
