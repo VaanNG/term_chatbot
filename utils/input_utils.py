@@ -7,7 +7,7 @@ def get_user_input():
     marker = 'send'
 
     while True:
-        edit_mode = input("Enter editing mode ('e' for editor, 'k' for keyboard, 'q' to quit): ")
+        edit_mode = input("Editing mode ('e' for editor, 'k' for keyboard, 'q' to quit): ")
 
         if edit_mode == 'e':
             print("Type 'send; on a new line to send message.")
@@ -37,7 +37,6 @@ def get_user_input():
                 user_input = ''
 
             if user_input:
-                print('User: ' + user_input)
                 return user_input
             else:
                 print("No input provided. Exiting gracefully.")

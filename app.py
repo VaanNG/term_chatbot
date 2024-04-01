@@ -41,8 +41,8 @@ def main():
     print('Type "exit" to quit the application.')
 
     available_chatbots = {
-        "1": ("Anthropic -- available", AnthropicClient, AVAILABLE_ANTHROPIC_MODELS),
-        "2": ("OpenAI -- unavailable", OpenAIClient, AVAILABLE_OPENAI_MODELS)
+        "1": ("Anthropic 🟢", AnthropicClient, AVAILABLE_ANTHROPIC_MODELS),
+        "2": ("OpenAI 🔴", OpenAIClient, AVAILABLE_OPENAI_MODELS)
     }
 
     print("Available AI chatbots:")
@@ -91,6 +91,7 @@ def main():
                 if user_input.lower().strip() == 'exit':
                     break 
 
+                print('\nUser 🕯️: ' + user_input)
                 response, token_usage = ai_chatbot.send_request(user_input)
 
                 token_cost = pricing_model.get_token_cost(ai_chatbot.model, token_usage["input_tokens"], token_usage["output_tokens"])
@@ -100,13 +101,13 @@ def main():
                 total_input_tokens += token_usage["input_tokens"]
                 total_output_tokens += token_usage["output_tokens"]
 
-                print('\nAI: ' + response + ' \n')
+                print('\nAI 💡: ' + response + ' \n')
                 print('!! TOKEN USAGE !!')
                 if token_cost is not None:
-                    print(f'Token usage: C:${token_cost:.2f}, I:{token_usage["input_tokens"]}, O:{token_usage["output_tokens"]}')
+                    print(f'Token usage: C:💵{token_cost:.2f}$, I:{token_usage["input_tokens"]}, O:{token_usage["output_tokens"]}')
                 else:
-                    print(f'Token usage: C:$0.00, I:{token_usage["input_tokens"]}, O:{token_usage["output_tokens"]}')
-                print(f'Total tokens: C:${total_cost:.2f}, I:{total_input_tokens}, O:{total_output_tokens}')
+                    print(f'Token usage: C:💵0.00$, I:{token_usage["input_tokens"]}, O:{token_usage["output_tokens"]}')
+                print(f'Total tokens: C:💵{total_cost:.2f}$, I:{total_input_tokens}, O:{total_output_tokens}')
                 print('!! TOKEN USAGE !!\n')
 
             except KeyboardInterrupt:
