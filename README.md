@@ -10,14 +10,12 @@ This project is a terminal-based chat application that allows you to interact wi
 - Modular architecture for easy extensibility and maintenance.
 - Real-time pricing information and token usage tracking.
 - Chat history saving (current saved in a temporary folder called `/chat_history`, generated locally when saving for the first time)
-- Keyboard navigation for browsing chat history (WIP).
-- Chat history saving and loading (WIP).
+- Chat history loading (WIP).
 
 ## Wish lists 
 
 * [ ] OpenAI Client -- ChatGPT 
 * [ ] Resume from a selected chat history.
-* [ ] Navigate with keyboard keys (left-key, right-key, alt+left-key, right-left-key), while keeping the existing multi-line support. 
 
 ## Installation
 
@@ -69,6 +67,27 @@ This will provide verbose output and stop the test runner as soon as the first t
 5. To submit a multi-line message, press enter to jump line and when you're ready to send the prompt, type `/send` on a new line after entering your message.
 
 6. To exit the application, type `exit` on a new line (recommended) or `ctrl-c`
+
+## Editing Modes 🎨⌨️
+
+The AI Chat App now supports two editing modes: Editor Mode and Keyboard Mode.
+
+### Editor Mode ✍️🌟
+*in order to use this mode, it is recommended that you have tmux installed.*
+- Trigger the Editor Mode by entering 'e' when prompted for the editing mode.
+- The app will open a `tmux` pane with your preferred editor (default: `nvim`).
+- Edit your message in the editor, and type 'send' on a new line to send the message.
+- If you close the editor without providing any input, the app will gracefully exit the editing mode.
+
+### Keyboard Mode ⌨️💬
+- Trigger the Keyboard Mode by entering 'k' when prompted for the editing mode.
+- Type your message directly in the terminal, using the keyboard for navigation and editing.
+- Press `Ctrl+D` to send the message.
+
+## Chat History Saving 💾✨
+- When exiting the app, you will be prompted to choose whether to save the chat history.
+- Enter 'y' to save the chat history or 'n' to exit without saving.
+- The chat history will be saved in a designated directory for future reference.
 
 ## Pricing Model
 
