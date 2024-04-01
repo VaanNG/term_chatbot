@@ -71,7 +71,7 @@ def default_edit_mode():
         readline.set_pre_input_hook(pre_input_hook)
 
     user_input = []
-    print("Enter your cosmic message (press Ctrl+D to send):")
+    print("Enter your cosmic message (press Ctrl+d on a new line to send):")
 
     custom_key_bindings(user_input)
 

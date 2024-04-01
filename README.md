@@ -10,7 +10,7 @@ This project is a terminal-based chat application that allows you to interact wi
 - Modular architecture for easy extensibility and maintenance.
 - Real-time pricing information and token usage tracking.
 - Chat history saving (current saved in a temporary folder called `/chat_history`, generated locally when saving for the first time)
-- Chat history loading (WIP).
+- Send messages by selecting between different editing modes: terminal editor or keyboard.
 
 ## Wish lists 
 
