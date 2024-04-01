@@ -1,37 +1,47 @@
 import readline
 import os
-import subprocess
+import time
 
 def get_user_input():
     editor = os.environ.get('PROMPT_EDITOR', 'nvim')
+    marker = 'send'
 
     while True:
-        edit_mode = input("Enter editing mode ('e' for editor, 'k' for keyboard, 'q' to quit): ").strip()
-        if edit_mode == 'e':
-            print("Editor mode selected. You can use ':view' to view the conversation history.")
-        elif edit_mode == 'k':
-            print("Keyboard mode selected. Use arrow keys to navigate and edit your message.")
-        elif edit_mode == 'q':
-            print("Quitting the application. Your cosmic journey will be remembered!")
+        edit_mode = input("Enter editing mode ('e' for editor, 'k' for keyboard, 'q' to quit): ")
 
         if edit_mode == 'e':
+            print("Type 'send; on a new line to send message.")
             with open('prompt.txt', 'w') as f:
                 f.write('')
 
+            # Open tmux and split the screen
+            os.system('tmux split-window -v && tmux resize-pane -D 10')
+            os.system(f'tmux send-keys "{editor} prompt.txt; echo {marker} >> prompt.txt" C-m')
+
+            # Wait for the marker to appear in the file
             while True:
-                with subprocess.Popen([editor, 'prompt.txt']) as p:
-                    p.wait()
-
                 with open('prompt.txt', 'r') as f:
-                    user_input = f.read().strip()
+                    content = f.read().strip()
+                    if content.endswith(f"\n{marker}"):
+                        break
+                time.sleep(0.1)
 
-                if ':view' in user_input:
-                    input("Press Enter to continue editing...")
-                else:
-                    break
+            # Kill the tmux window
+            os.system('tmux kill-pane')
 
-            os.remove('prompt.txt')
-            return user_input
+            if os.path.exists('prompt.txt'):
+                with open('prompt.txt', 'r') as f:
+                    user_input = f.read().strip().replace(f'\n{marker}', '').strip()
+                os.remove('prompt.txt')
+            else:
+                user_input = ''
+
+            if user_input:
+                print('User: ' + user_input)
+                return user_input
+            else:
+                print("No input provided. Exiting gracefully.")
+                return None
 
         elif edit_mode == 'k':
             return default_edit_mode()

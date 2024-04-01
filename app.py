@@ -105,7 +105,7 @@ def main():
                 if token_cost is not None:
                     print(f'Token usage: C:${token_cost:.2f}, I:{token_usage["input_tokens"]}, O:{token_usage["output_tokens"]}')
                 else:
-                    print(f'Token usage: C:0.00, I:{token_usage["input_tokens"]}, O:{token_usage["output_tokens"]}')
+                    print(f'Token usage: C:$0.00, I:{token_usage["input_tokens"]}, O:{token_usage["output_tokens"]}')
                 print(f'Total tokens: C:${total_cost:.2f}, I:{total_input_tokens}, O:{total_output_tokens}')
                 print('!! TOKEN USAGE !!\n')
 
@@ -113,8 +113,13 @@ def main():
                 print("Exiting...")
                 break
 
-        # Call save_chat_history outside of the KeyboardInterrupt handling
-        save_chat_history(ai_chatbot.chat_history)
+        save_choice = input("Do you want to save the chat history? (y/n): ")
+        if save_choice.lower() == 'y':
+            save_chat_history(ai_chatbot.chat_history)
+            print("Chat history saved. Goodbye! 👋✨")
+        else:
+            print("Chat history not saved. Goodbye! 👋✨")
+        return None
 
     else:
         print("Invalid choice. Exiting...")
