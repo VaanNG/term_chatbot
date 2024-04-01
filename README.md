@@ -9,16 +9,15 @@ This project is a terminal-based chat application that allows you to interact wi
 - Ability to choose the AI chatbot and specific model to use.
 - Modular architecture for easy extensibility and maintenance.
 - Real-time pricing information and token usage tracking.
+- Chat history saving (current saved in a temporary folder called `/chat_history`, generated locally when saving for the first time)
 - Keyboard navigation for browsing chat history (WIP).
 - Chat history saving and loading (WIP).
 
 ## Wish lists 
 
-* [ ] OpenAI Client -- ChatGPT? 
-* [ ] Gemini Client -- Gemini .. ? 
-* [ ] Resume from chat history
-* [ ] Upload files with texts (.md)
-* [ ] Navigate with keyboard shortcut, mouse while typing in the text to send as prompt 
+* [ ] OpenAI Client -- ChatGPT 
+* [ ] Resume from a selected chat history.
+* [ ] Navigate with keyboard keys (left-key, right-key, alt+left-key, right-left-key), while keeping the existing multi-line support. 
 
 ## Installation
 
@@ -38,10 +37,9 @@ pip install -r requirements.txt
 ANTHROPIC_API_KEY=YOUR_ANTHROPIC_API_KEY
 OPENAI_API_KEY=YOUR_OPENAI_API_KEY
 AVAILABLE_ANTHROPHIC_MODELS=claude-3-opus-20240229,claude-3-sonnet-20240229,claude-3-haiku-20240307
-AVAILABLE_OPENAI_MODELS=davinci,curie,babbage,ada
+AVAILABLE_OPENAI_MODELS=gpt-3.5-turbo,gpt-4,gpt-4-turbo-preview
 ```
-Replace `YOUR_ANTHROPIC_API_KEY` and `YOUR_OPENAI_API_KEY` with your actual API keys. Modify the `CUSTOM_ANTHROPIC_MODELS` and `CUSTOM_OPENAI_MODELS` variables to include the models you want to support.
-
+Replace `YOUR_ANTHROPIC_API_KEY` and `YOUR_OPENAI_API_KEY` with your actual API keys.
 ### Testing 
 
 Run the tests:

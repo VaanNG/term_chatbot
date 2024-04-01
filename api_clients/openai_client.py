@@ -32,18 +32,40 @@ class OpenAIClient(BaseAPIClient):
             'Authorization': f'Bearer {self.api_key}'
         }
 
-    def _get_request_data(self, prompt):
+    def _get_request_data(self, prompt, chat_history):
         """
         Return the request data for the OpenAI API.
         """
+        messages = []
+        for role, content in chat_history:
+            messages.append({"role": role, "content": content})
+
+        messages.append({"role": "user", "content": prompt})
+
         return {
-            'prompt': prompt,
             'model': self.model,
-            'max_tokens': 1000  # Adjust as needed
+            'max_tokens': 1000,  # Adjust as needed
+            'messages': messages
         }
 
     def _parse_response(self, response):
         """
-        Parse the response from the OpenAI API and return the AI's response.
+        Parse the response from the OpenAI API and return the AI's response and token usage.
+
+        Returns:
+            tuple: A tuple containing the AI's response (str) and a dictionary with input and output token counts.
         """
-        return response.json()['choices'][0]['text']
+        response_data = response.json()
+
+        # Extract the AI's response
+        result = response_data.get('choices', [])[0].get('message', {}).get('content', '')
+
+        # Extract token usage
+        usage = response_data.get('usage', {})
+        input_tokens = usage.get('prompt_tokens', 0)
+        output_tokens = usage.get('completion_tokens', 0)
+
+        return result or "No response received.", {"input_tokens": input_tokens, "output_tokens": output_tokens}
+
+
+

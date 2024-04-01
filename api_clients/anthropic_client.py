@@ -6,13 +6,13 @@ load_dotenv()
 
 AVAILABLE_ANTHROPIC_MODELS = os.getenv('AVAILABLE_ANTHROPIC_MODELS').split(',')
 
-class AnthropicHTTPClient(BaseAPIClient):
+class AnthropicClient(BaseAPIClient):
     """
     This class represents the Anthropic API client using direct HTTP requests.
     It inherits from the BaseAPIClient and provides the implementation for sending requests to the Anthropic API.
     """
 
-    def __init__(self, api_key, api_url="https://api.anthropic.com/v1/messages"):
+    def __init__(self, api_key, api_url):
         """
         Initialize the AnthropicHTTPClient with the API key and URL.
 
