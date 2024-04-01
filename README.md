@@ -38,7 +38,7 @@ AVAILABLE_ANTHROPHIC_MODELS=claude-3-opus-20240229,claude-3-sonnet-20240229,clau
 AVAILABLE_OPENAI_MODELS=gpt-3.5-turbo,gpt-4,gpt-4-turbo-preview
 ```
 Replace `YOUR_ANTHROPIC_API_KEY` and `YOUR_OPENAI_API_KEY` with your actual API keys.
-### Testing 
+### Testing (in development) 
 
 Run the tests:
 ```
@@ -108,6 +108,7 @@ chat_app/
 │   └── test_api_clients.py
 ├── utils/
 │   ├── init.py
+│   ├── input_utils.py
 │   └── file_utils.py
 │   └── pricing_model.py
 ├── requirements.txt
