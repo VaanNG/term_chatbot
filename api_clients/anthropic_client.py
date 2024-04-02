@@ -45,7 +45,7 @@ class AnthropicClient(BaseAPIClient):
 
         return {
             'model': self.model,
-            'max_tokens': 1000,  # Adjust as needed
+            'max_tokens': 2000,  # Adjust as needed
             'messages': messages
         }
 

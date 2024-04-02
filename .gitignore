@@ -1,23 +1,23 @@
 # Compiled Python files
 *.pyc
 *.pyo
-__pycache__/
+__pycache__/*
 
 # Virtual environment
-venv/
-env/
-.venv/
-.env/
+venv/*
+env/*
+.venv/*
+.env/*
 
 # IDE/Editor files
-.idea/
-.vscode/
-.vs/
+.idea/*
+.vscode/*
+.vs/*
 
 # Build and distribution
-build/
-dist/
-*.egg-info/
+build/*
+dist/*
+*.egg-info/*
 
 # Logs
 *.log
@@ -31,5 +31,10 @@ dist/
 config.json
 
 # Chat history
-chat_history
+chat_histories/*
 
+# Git
+.git/*
+
+# Memory dumps
+memories/*
