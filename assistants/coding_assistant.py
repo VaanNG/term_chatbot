@@ -44,7 +44,10 @@ class CodingAssistant(BaseAssistant):
 
         coding_specific_prompt = f"You will be provided with the content of project located at: {self.project_folder}." \
                                  f"You can utilize the project files and your coding knowledge to assist the user with their project coding tasks." \
-                                 f"Please note that you will not be able to directly interact with the files. You can only suggest changes to be made by sending code snippets to the user."
+                                 f"Please note that you will not be able to directly interact with the files. You can only suggest changes to be made by sending code snippets to the user." \
+                                 f"Only provide the new code snippets or relevant code sections to update in order to save token usage." \
+                                 f"Use a git diff notation to show what is new, what is replaced, what is deleted." \
+                                 f"Do not show what hasn't changed."
 
         file_contents_prompt = "\n\n".join([f"#{file_path}\n{content}" for file_path, content in self.project_files.items()])
 
@@ -57,8 +60,17 @@ class CodingAssistant(BaseAssistant):
         \n<project-files>    
         \n{file_contents_prompt}.
         \n</project-files>
-        \nI'd like you to confirm whether you can see the content of the files.
-        \nAre you familiar with the languages used in the project?
-        \nNext, please detail the steps that would you take to take on the tasks that I just gave you. 
-        \nIf you need more information, let me know, I'll be happy to provide.
+        \nStep 1: First make sure that you understand what is required from the tasks. 
+        Propose a plan with specific steps and milestones.
+        Stop and wait for user's feedbacks on your proposed plan.
+        \nStep 2: With the user's feedbacks on the plan, update the proposed plan if necessary. 
+        If user approves of the plan, start moving through the proposed plan incrementally and output required code chunks. 
+        Remember, you can't edit on the files themselves so you will always have to rely on the user to create/update the files in the project.
+        Stop and wait for user's feedbacks at each step.
+        Update itiratively your previous thoughts, outputs accordingly.
+        Once the user approves of the outputs for the step, the user will take your code and try to merge it into existing code. 
+        Do whatever you can to make the process as smooth as possible.
+        Ask if the users have finished implementing the new codes. Once the the user confirms that he/she is done, move on to the next step.
+        \nStep 3: Once you have covered all steps in the plan, summarise what has been done, discussed. 
+        Include all the relevant revisions and feedbacks.
         """ # the XML tags are best for Claude but it wouldn't to include for other AIs.
