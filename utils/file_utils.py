@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-def save_chat_history(chat_history, folder_path="chat_history"):
+def save_chat_history(chat_history, folder_path="chat_histories"):
     print('Entering saving chat history')
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)

@@ -9,13 +9,9 @@ This project is a terminal-based chat application that allows you to interact wi
 - Ability to choose the AI chatbot and specific model to use.
 - Modular architecture for easy extensibility and maintenance.
 - Real-time pricing information and token usage tracking.
-- Chat history saving (current saved in a temporary folder called `/chat_history`, generated locally when saving for the first time)
+- Chat history saving (current saved in a temporary folder called `/chat_histories`, generated locally when saving for the first time)
 - Send messages by selecting between different editing modes: terminal editor or keyboard.
-
-## Wish lists 
-
-* [ ] OpenAI Client -- ChatGPT 
-* [ ] Resume from a selected chat history.
+- Support for specialized AI assistants, such as the `CodingAssistant`, which can provide guidance and suggestions for coding projects.
 
 ## Installation
 
@@ -82,7 +78,7 @@ The AI Chat App now supports two editing modes: Editor Mode and Keyboard Mode.
 ### Keyboard Mode ⌨️💬
 - Trigger the Keyboard Mode by entering 'k' when prompted for the editing mode.
 - Type your message directly in the terminal, using the keyboard for navigation and editing.
-- Press `Ctrl+D` to send the message.
+- Press `Ctrl+D` on a new line to send the message.
 
 ## Chat History Saving 💾✨
 - When exiting the app, you will be prompted to choose whether to save the chat history.
@@ -93,21 +89,43 @@ The AI Chat App now supports two editing modes: Editor Mode and Keyboard Mode.
 
 The application includes a real-time pricing feature that calculates the token costs for each conversation based on the selected AI model. The pricing information is displayed after each AI response, showing the cost for the current conversation and the total cost of all conversations.
 
+## Assistants 
+
+## Customer config 
+
+You can edit the .json config in the `./config/` folder to tweak the Assistants.
+
+### Coding Assistant
+
+The chat application now includes a specialized `CodingAssistant` that can provide guidance and suggestions for coding projects. The `CodingAssistant` is a subclass of the `BaseAssistant` and has the following capabilities:
+
+- Processes the content of a provided coding project folder, ignoring files specified in a `.gitignore` file.
+- Generates an initial prompt that introduces the assistant, its role, environment, emotions, and the tasks it has been assigned.
+- Utilizes the project files and the assistant's coding knowledge to assist the user with their coding tasks.
+- Provides recommendations and code snippets to the user, without direct interaction with the project files.
+
+To use the `CodingAssistant`, the user needs to provide the path to the coding project folder when prompted during the application startup.
 
 ## Project Structure 
 
-```
+``` 
 chat_app/
 ├── api_clients/
-│   ├── init.py
+│   ├── __init__.py
 │   ├── anthropic_client.py
 │   ├── base_client.py
 │   └── openai_client.py
+├── assistants/
+│   ├── __init__.py
+│   ├── base_assistant.py
+│   └── coding_assistant.py
+├── config/
+│   ├── CodingAssistant_config.json
 ├── tests/
-│   ├── init.py
+│   ├── __init__.py
 │   └── test_api_clients.py
 ├── utils/
-│   ├── init.py
+│   ├── __init__.py
 │   ├── input_utils.py
 │   └── file_utils.py
 │   └── pricing_model.py
@@ -117,6 +135,7 @@ chat_app/
 ```
 
 - `api_clients/`: Contains the classes for different AI chatbots and API clients.
+- `assistants/`: Contains the base assistant class (`BaseAssistant`) and specialized assistant implementations, such as the `CodingAssistant`.
 - `tests/`: Contains unit tests for the API client classes.
 - `utils/`: Contains utility functions to calculate costs in $USD based on session usage token, save chat history to folder.
 - `requirements.txt`: Lists the required Python dependencies.
