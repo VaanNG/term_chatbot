@@ -37,7 +37,9 @@ class OpenAIClient(BaseAPIClient):
         Return the request data for the OpenAI API.
         """
         messages = []
-        for role, content in chat_history:
+        for message in chat_history["messages"]:
+            role = message["sender"]
+            content = message["text"]
             messages.append({"role": role, "content": content})
 
         messages.append({"role": "user", "content": prompt})

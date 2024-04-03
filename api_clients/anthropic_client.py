@@ -38,14 +38,16 @@ class AnthropicClient(BaseAPIClient):
         Return the request data for the Anthropic API.
         """
         messages = []
-        for role, content in chat_history:
+        for message in chat_history["messages"]:
+            role = message["sender"]
+            content = message["text"]
             messages.append({"role": role, "content": content})
 
         messages.append({"role": "user", "content": prompt})
 
         return {
             'model': self.model,
-            'max_tokens': 2000,  # Adjust as needed
+            'max_tokens': 2000,  
             'messages': messages
         }
 
