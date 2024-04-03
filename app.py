@@ -207,7 +207,7 @@ def main():
 
         save_choice = input("Do you want to save the chat history? (y/n): ")
         if save_choice.lower() == 'y':
-            save_chat_history(ai_chatbot.chat_history)
+            save_chat_history(ai_chatbot)
             print("Chat history saved. Goodbye! 👋✨")
         else:
             print("Chat history not saved. Goodbye! 👋✨")
