@@ -1,21 +1,22 @@
+import json
 import os
-from datetime import datetime
+from datetime import datetime 
 
-def save_chat_history(chat_history, folder_path="chat_histories"):
-    print('Entering saving chat history')
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-        print('Folder made')
-    
-    now = datetime.now()
-    filename = f"chat_history_{now.strftime('%Y%m%d_%H%M%S')}.md"
-    file_path = os.path.join(folder_path, filename)
+def save_chat_history(self, directory="chat_histories"):
+    """Saves the chat history to a JSON file in the specified directory.
 
-    with open(file_path, "w", encoding="utf-8") as file:
-        for role, content in chat_history:
-            if role == "user":
-                file.write(f"**You:** {content}\n\n")
-            elif role == "assistant":
-                file.write(f"**AI:** {content}\n\n")
+    Args:
+        directory (str, optional): The directory to save the chat history. Defaults to "chat_histories".
+    """
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"chat_history_{timestamp}.json"
+    filepath = os.path.join(directory, filename)
 
-    print(f"Chat history saved to {file_path}")
+    os.makedirs(directory, exist_ok=True)  # Create the directory if it doesn't exist
+
+    # Ensure that any context is also saved
+    if "context" not in self.chat_history:  
+        self.chat_history["context"] = {}
+
+    with open(filepath, "w") as f:
+        json.dump(self.chat_history, f, indent=4)  

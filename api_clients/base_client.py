@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime 
 
 class BaseAPIClient:
     """
@@ -17,7 +18,11 @@ class BaseAPIClient:
         self.api_key = api_key
         self.api_url = api_url
         self.headers = self._get_headers()
-        self.chat_history = []  # Initialize an empty chat history
+        self.chat_history = {
+                "messages" : [],
+                "summary" : "",
+                "code_references" : []
+                }  
 
     def send_request(self, prompt):
         """
@@ -44,8 +49,19 @@ class BaseAPIClient:
             prompt (str): The user's prompt.
             ai_response (str): The response from the AI.
         """
-        self.chat_history.append(("user", prompt))
-        self.chat_history.append(("assistant", ai_response))
+        message = {
+            "sender": "user",
+            "text": prompt,
+            "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        }
+        self.chat_history["messages"].append(message)
+
+        message = {
+            "sender": "assistant",
+            "text": ai_response,
+            "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        }
+        self.chat_history["messages"].append(message)
 
     def _get_request_data(self, prompt):
         """
