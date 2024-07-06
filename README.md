@@ -19,11 +19,10 @@ This project is a terminal-based chat application that allows you to interact wi
 
 2. Navigate to the project directory
 
-3. Install the required dependencies:
+3. Assuming you already have python installed, run the script `env.sh`:
+```bash
+source env.sh
 ```
-pip install -r requirements.txt 
-```
-
 ## Setup
 
 1. Create a `.env` file in the project root directory and add your API keys and configuration settings:
@@ -52,8 +51,11 @@ This will provide verbose output and stop the test runner as soon as the first t
 
 ## Usage
 
-1. Run the application
-
+1. Run the application by running the below commands
+```bash
+source env.sh # Starting the virtual env
+python app.py # Starting the app
+```
 2. The application will prompt you to select an AI chatbot (Anthropic or OpenAI).
 
 3. After selecting the AI chatbot, the application will prompt you to choose a specific model for that chatbot.
